@@ -4,7 +4,9 @@ import { createUserHandler } from './controllers/user.controller';
 import validate from './middleware/validateResource';
 import createUserSchema from './schema/user.schema';
 import createSessionSchema from './schema/session.schema';
+import {createProductSchema, getProductSchema, updateProductSchema, deleteProductSchema} from './schema/product.schema'
 import requireUser from './middleware/requireUser';
+import { createProductHandler, deleteProductHandler, getProductHandler, updateProductHandler } from './controllers/product.controller';
 
 export default (app: Express) => {
     app.get('/healthCheck', (req: Request, res: Response) => {
@@ -18,4 +20,12 @@ export default (app: Express) => {
     app.get('/api/sessions', requireUser, getUserSessionHandler);
 
     app.delete('/api/sessions/me', requireUser, deleteUserSessionHandler);
+
+    app.post('/api/product', [requireUser, validate(createProductSchema)], createProductHandler);
+
+    app.get('/api/product/:productId', [requireUser, validate(getProductSchema)], getProductHandler);
+
+    app.put('/api/product/:productId', [requireUser, validate(updateProductSchema)], updateProductHandler);
+
+    app.delete('/api/product/:productId', [requireUser, validate(deleteProductSchema)], deleteProductHandler);
 }
