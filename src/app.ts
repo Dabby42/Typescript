@@ -4,19 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 import config from 'config';
 import connect from './utils/connect'
-import { deserializeUser } from './middleware/deserializeUser';
-import route from './routes'
+import createServer from './utils/server';
 
-const app = express();
-
-app.use(bodyParser.json())
-
-app.use(deserializeUser);
+const app = createServer();
 
 const port = config.get<number>('port');
 
 app.listen(port, async () => {
     console.log(`App listening on http://localhost:${port}`);
     await connect();
-    route(app)
 })

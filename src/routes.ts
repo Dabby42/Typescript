@@ -23,7 +23,7 @@ export default (app: Express) => {
 
     app.post('/api/product', [requireUser, validate(createProductSchema)], createProductHandler);
 
-    app.get('/api/product/:productId', [requireUser, validate(getProductSchema)], getProductHandler);
+    app.get('/api/product/:productId', validate(getProductSchema), getProductHandler);
 
     app.put('/api/product/:productId', [requireUser, validate(updateProductSchema)], updateProductHandler);
 

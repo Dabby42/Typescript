@@ -18,8 +18,9 @@ const createUserSchema = object({
         message: 'passwords does not match',
         path: ['passwordConfirmation']
     })
+
 })
 
-export type CreateUserInput = TypeOf<typeof createUserSchema>
+export type CreateUserInput = TypeOf<typeof createUserSchema>;
 
 export default createUserSchema;
