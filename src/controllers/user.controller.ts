@@ -6,7 +6,7 @@ import {omit} from "lodash";
 export const createUserHandler = async (req: Request<{}, {}, CreateUserInput['body']>, res: Response) => {
     try {
         const user = await createUser(req.body);
-        return res.send(omit(user.toJSON(), 'password'))
+        return res.send(user)
     } catch (error) {
         console.log(error);
         return res.status(409).send("Invalid Credentials")
