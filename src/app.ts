@@ -4,6 +4,7 @@ import config from 'config';
 import connect from './utils/connect'
 import createServer from './utils/server';
 import { startMetricsServer } from './utils/metrics';
+import swaggerDocs from './utils/swagger';
 
 const app = createServer();
 
@@ -14,4 +15,5 @@ app.listen(port, async () => {
     await connect();
 
     startMetricsServer();
+    swaggerDocs(app, port);
 })

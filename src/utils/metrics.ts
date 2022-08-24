@@ -28,6 +28,6 @@ export const startMetricsServer = () => {
     })
 
     app.listen(9100, () => {
-        console.log('App listening on http://localhost:9100')
+        console.log('Metrics server listening at http://localhost:9100')
     })
 }

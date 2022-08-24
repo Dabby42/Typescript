@@ -8,7 +8,7 @@ export const createUser = async (input:DocumentDefinition<Omit<UserDocument, 'cr
         let user = new UserModel(input)
         await user.save();
         //return await UserModel.create(input);
-        return omit(user.toJSON(), 'password');
+        return omit(user, 'password');
     } catch (error:any) {
         throw new Error(error );
     }
